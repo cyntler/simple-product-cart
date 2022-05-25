@@ -1,0 +1,16 @@
+{
+  "name": "simple-product-cart/backend",
+  "type": "project",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "SimpleProductCart\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Damian Cyntler"
+    }
+  ],
+  "require": {}
+}
