@@ -1,0 +1,31 @@
+{
+  "name": "@simple-product-cart/frontend",
+  "version": "0.0.1",
+  "private": true,
+  "description": "A simple product cart application based on Vue.js and PHP.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyntler/simple-product-cart.git"
+  },
+  "author": "Damian Cyntler",
+  "license": "MIT",
+  "scripts": {
+    "start": "npm run clean && webpack --watch",
+    "build": "npm run clean && webpack",
+    "clean": "rimraf ./public/webapp",
+    "prettier": "prettier"
+  },
+  "devDependencies": {
+    "@prettier/plugin-php": "^0.18.5",
+    "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.6.2",
+    "rimraf": "^3.0.2",
+    "vue-loader": "^17.0.0",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2"
+  },
+  "dependencies": {
+    "vue": "^3.2.36"
+  }
+}
