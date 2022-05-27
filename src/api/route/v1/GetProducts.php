@@ -2,12 +2,20 @@
 
 namespace SimpleProductCart\Api\Route\V1;
 
-use SimpleProductCart\Core\RouteInterface;
+use SimpleProductCart\Api\Core\Adapter\JsonDataAdapter;
+use SimpleProductCart\Api\Core\Response;
+use SimpleProductCart\Api\Core\RouteInterface;
+use SimpleProductCart\Api\Model\Product;
 
 class GetProducts implements RouteInterface
 {
-    public function handle()
+    public static function handle(Response $response)
     {
-        echo 100;
+        $jsonDataAdapter = new JsonDataAdapter(
+            __DIR__ . '/../../products.json'
+        );
+        $product = new Product($jsonDataAdapter);
+
+        return $response->json($product->getEntries());
     }
 }
