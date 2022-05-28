@@ -4,7 +4,7 @@ A simple product cart application based on Vue.js and PHP.
 
 ## Requirements
 
-If you want to run this project locally, you need **Docker** and **Node.js** installed on your system.
+If you want to run this project locally, you need **Docker** installed on your system.
 
 ## How to run?
 
@@ -17,7 +17,7 @@ The application should be available at: http://localhost:3333.
 
 ## How to develop?
 
-Following command should run both PHP built-in server and Webpack in the watching mode.<br>The application should be available at: http://localhost:3333.
+Following command should run both PHP built-in server and Webpack in the watching mode.<br>The application should be served at: http://localhost:3000.
 
 ```sh
 ./scripts/develop.sh
