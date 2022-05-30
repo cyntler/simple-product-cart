@@ -2,6 +2,12 @@
 
 A simple product cart application based on Vue.js and PHP.
 
+## UI Design / Figma
+
+I designed this project in Figma.
+
+<a href="https://www.figma.com/file/OHBATl796CzHP4Aki4uwdD/Simple-Product-Cart?node-id=0%3A1" target="_blank">Take a look!</a>
+
 ## Requirements
 
 If you want to run this project locally, you need **Docker** installed on your system.
