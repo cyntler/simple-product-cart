@@ -7,12 +7,12 @@ use SimpleProductCart\Api\Core\Response;
 use SimpleProductCart\Api\Core\RouteInterface;
 use SimpleProductCart\Api\Model\Product;
 
-class GetProducts implements RouteInterface
+class Products implements RouteInterface
 {
     public static function handle(Response $response)
     {
         $jsonDataAdapter = new JsonDataAdapter(
-            __DIR__ . '/../../products.json'
+            ROOT_PATH . '/src/assets/products.json'
         );
         $product = new Product($jsonDataAdapter);
 

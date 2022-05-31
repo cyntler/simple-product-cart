@@ -34,6 +34,6 @@ class Utils
 
     public static function fileExists($path)
     {
-        return file_exists($path);
+        return realpath($path);
     }
 }
