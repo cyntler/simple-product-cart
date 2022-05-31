@@ -16,11 +16,14 @@
     "prettier": "prettier"
   },
   "dependencies": {
-    "vue": "^3.2.36",
-    "vue-router": "^4.0.15"
+    "pinia": "^2.0.14",
+    "vue": "^3.2.36"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "@prettier/plugin-php": "^0.18.5",
+    "babel-loader": "^8.2.5",
     "browser-sync-webpack-plugin": "^2.3.0",
     "css-loader": "^6.7.1",
     "html-webpack-plugin": "^5.5.0",
