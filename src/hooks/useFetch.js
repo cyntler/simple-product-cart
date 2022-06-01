@@ -1,7 +1,10 @@
-import { onMounted, ref, toRef } from 'vue';
+import { onMounted, ref } from 'vue';
 
-export const useFetch = (url, { isInitialFetching = false, delay = 0 }) => {
-  const data = ref(null);
+export const useFetch = (
+  url,
+  { isInitialFetching = false, delay = 0, initialData = null }
+) => {
+  const data = ref(initialData);
   const isLoading = ref(isInitialFetching);
   const error = ref(null);
 
