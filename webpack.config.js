@@ -41,13 +41,16 @@ module.exports = (_env, { mode }) => {
         favicon: resolve('./src/assets/favicon.png'),
       }),
       new VueLoaderPlugin(),
-      isDev &&
-        new BrowserSyncPlugin({
-          host: 'localhost',
-          port: 3000,
-          proxy: 'http://localhost:3333',
-          notify: false,
-        }),
+      ...(isDev
+        ? [
+            new BrowserSyncPlugin({
+              host: 'localhost',
+              port: 3000,
+              proxy: 'http://localhost:3333',
+              notify: false,
+            }),
+          ]
+        : []),
     ],
   };
 };
