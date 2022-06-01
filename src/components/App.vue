@@ -1,12 +1,39 @@
+<script setup>
+import { computed, ref } from 'vue';
+
+import ProductList from './ProductList.vue';
+import Loader from './Loader.vue';
+import CartIcon from './CartIcon.vue';
+
+import { useProductsGet } from '../hooks/useProductsGet';
+import { useCart } from '../hooks/useCart';
+import CartSummaryDrawer from './CartSummaryDrawer.vue';
+
+const { products, isLoading } = useProductsGet();
+const { cartItems, isSummaryOpen, toggleSummary, addItem, removeItem } =
+  useCart();
+</script>
+
 <template>
-  <router-view v-slot="{ Component }">
-    <transition name="slide">
-      <component :is="Component" class="route" />
-    </transition>
-  </router-view>
+  <Loader v-if="isLoading" />
+  <ProductList
+    v-else-if="products"
+    :products="products"
+    @add-to-cart="addItem"
+    @remove-from-cart="removeItem"
+  />
+  <CartIcon :count="cartItems.length" @click="toggleSummary" />
+  <CartSummaryDrawer :open="isSummaryOpen" :items="cartItems" />
 </template>
 
 <style lang="scss">
+:root {
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --color-orange: #eab25e;
+  --color-gray: #f0f0f0;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -16,39 +43,23 @@ body,
 main {
   margin: 0;
   padding: 0;
-  height: 100vh;
-}
-
-.route {
-  width: 100%;
   min-height: 100vh;
-  position: absolute;
-  left: 0;
-  top: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  color: var(--color-black);
 }
 
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.75s ease-out;
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.slide-enter-to {
-  position: absolute;
-  right: 0;
-}
-
-.slide-enter-from {
-  position: absolute;
-  right: -100%;
-}
-
-.slide-leave-to {
-  position: absolute;
-  left: -100%;
-}
-
-.slide-leave-from {
-  position: absolute;
-  left: 0;
+button {
+  border: 0;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
 }
 </style>
