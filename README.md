@@ -21,6 +21,7 @@ The application should be available at: http://localhost:3333.
 
 ## How to develop?
 
+If you want to develop this project, you need **Docker** and **Node.js** installed on your system.<br>
 Following command should run both PHP built-in server and Webpack in the watching mode.
 
 ```sh
