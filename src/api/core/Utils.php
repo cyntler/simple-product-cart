@@ -19,7 +19,7 @@ class Utils
             }
 
             $apiRouteClassName =
-                '\\SimpleProductCart\\Api\\Route\\' . implode('\\', $urlParts);
+                '\\SimpleProductCart\\Route\\' . implode('\\', $urlParts);
 
             if (
                 class_exists($apiRouteClassName) &&
