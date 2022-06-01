@@ -16,7 +16,6 @@
     "prettier": "prettier"
   },
   "dependencies": {
-    "pinia": "^2.0.14",
     "vue": "^3.2.36"
   },
   "devDependencies": {
@@ -26,6 +25,7 @@
     "babel-loader": "^8.2.5",
     "browser-sync-webpack-plugin": "^2.3.0",
     "css-loader": "^6.7.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.0",
     "prettier": "^2.6.2",
     "rimraf": "^3.0.2",

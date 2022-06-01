@@ -28,6 +28,10 @@ module.exports = (_env, { mode }) => {
           test: /\.scss$/,
           use: ['vue-style-loader', 'css-loader', 'sass-loader'],
         },
+        {
+          test: /\.svg$/i,
+          loader: 'file-loader',
+        },
       ],
     },
     plugins: [
