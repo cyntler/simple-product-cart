@@ -1,8 +1,8 @@
 <?php
 
-namespace SimpleProductCart\Api\Model;
+namespace SimpleProductCart\Model;
 
-use SimpleProductCart\Api\Core\Model;
+use SimpleProductCart\Core\Model;
 
 class Product extends Model
 {

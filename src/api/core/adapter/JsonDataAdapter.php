@@ -1,10 +1,10 @@
 <?php
 
-namespace SimpleProductCart\Api\Core\Adapter;
+namespace SimpleProductCart\Core\Adapter;
 
 use Exception;
-use SimpleProductCart\Api\Core\DataAdapterInterface;
-use SimpleProductCart\Api\Core\Utils;
+use SimpleProductCart\Core\DataAdapterInterface;
+use SimpleProductCart\Core\Utils;
 
 class JsonDataAdapter implements DataAdapterInterface
 {

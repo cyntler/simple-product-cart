@@ -1,6 +1,6 @@
 <?php
 
-namespace SimpleProductCart\Api\Core;
+namespace SimpleProductCart\Core;
 
 use Exception;
 

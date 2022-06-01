@@ -1,11 +1,11 @@
 <?php
 
-namespace SimpleProductCart\Api\Route\V1;
+namespace SimpleProductCart\Route\V1;
 
-use SimpleProductCart\Api\Core\Adapter\JsonDataAdapter;
-use SimpleProductCart\Api\Core\Response;
-use SimpleProductCart\Api\Core\RouteInterface;
-use SimpleProductCart\Api\Model\Product;
+use SimpleProductCart\Core\Adapter\JsonDataAdapter;
+use SimpleProductCart\Core\Response;
+use SimpleProductCart\Core\RouteInterface;
+use SimpleProductCart\Model\Product;
 
 class Products implements RouteInterface
 {

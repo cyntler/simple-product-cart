@@ -1,6 +1,6 @@
 <?php
 
-use SimpleProductCart\Api\Core\Application;
+use SimpleProductCart\Core\Application;
 
 require_once '../vendor/autoload.php';
 
