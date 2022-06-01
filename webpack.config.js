@@ -11,7 +11,7 @@ module.exports = (_env, { mode }) => {
     entry: './src/index.js',
     output: {
       path: resolve('./public/webapp'),
-      filename: 'bundle.js',
+      filename: isDev ? 'bundle.js' : 'bundle.[fullhash].js',
       publicPath: '/webapp/',
     },
     module: {
