@@ -1,3 +1,4 @@
 #!/bin/sh
-docker-compose up -d &
-npm start
+$(dirname $0)/composer.sh install
+npm install
+docker-compose up & npm start
