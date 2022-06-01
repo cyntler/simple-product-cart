@@ -1,6 +1,6 @@
 import { ref } from 'vue';
 
-export const useCart = () => {
+export const useCart = (products) => {
   const cartItems = ref([]);
   const isSummaryOpen = ref(false);
 
@@ -8,33 +8,48 @@ export const useCart = () => {
     isSummaryOpen.value = !isSummaryOpen.value;
   };
 
-  const closeSummary = () => {
-    isSummaryOpen.value = false;
-  };
-
   const addItem = (item) => {
+    cartItems.value.push({ ...item, quantity: 1, maxQuantity: item.quantity });
     item.quantity -= 1;
     item.added = true;
-    cartItems.value.push({ ...item, quantity: 1 });
     isSummaryOpen.value = true;
   };
 
   const removeItem = (item) => {
-    item.quantity += 1;
-    item.added = false;
     cartItems.value.splice(
       cartItems.value.findIndex((i) => i.id === item.id),
       1
     );
+    products.value[
+      products.value.findIndex((p) => p.id === item.id)
+    ].quantity += 1;
+    products.value[
+      products.value.findIndex((p) => p.id === item.id)
+    ].added = false;
     isSummaryOpen.value = true;
+  };
+
+  const plusQuantity = (id) => {
+    products.value[products.value.findIndex((p) => p.id === id)].quantity -= 1;
+    cartItems.value[
+      cartItems.value.findIndex((p) => p.id === id)
+    ].quantity += 1;
+  };
+
+  const minusQuantity = (id) => {
+    products.value[products.value.findIndex((p) => p.id === id)].quantity += 1;
+    cartItems.value[
+      cartItems.value.findIndex((p) => p.id === id)
+    ].quantity -= 1;
   };
 
   return {
     cartItems,
     isSummaryOpen,
     toggleSummary,
-    closeSummary,
     addItem,
     removeItem,
+    plusQuantity,
+    minusQuantity,
   };
 };

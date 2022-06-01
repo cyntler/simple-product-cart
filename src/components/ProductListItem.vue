@@ -3,7 +3,7 @@ import { computed } from 'vue';
 
 import { formatPrice } from '../utils/formatPrice';
 
-const props = defineProps([
+const { price } = defineProps([
   'id',
   'name',
   'image',
@@ -11,14 +11,16 @@ const props = defineProps([
   'quantity',
   'added',
 ]);
-defineEmits(['addToCart', 'removeFromCart']);
+defineEmits(['addToCart']);
 
-const formattedPrice = computed(() => formatPrice(props.price / 100));
+const formattedPrice = computed(() => formatPrice(price));
 </script>
 
 <template>
   <article class="product-list-item">
-    <span class="product-list-item__quantity">x{{ quantity }}</span>
+    <span class="product-list-item__quantity">{{
+      quantity <= 0 ? 'Lack' : `x${quantity}`
+    }}</span>
     <div
       class="product-list-item__image"
       :style="{ backgroundImage: `url(${image})` }"
@@ -31,9 +33,10 @@ const formattedPrice = computed(() => formatPrice(props.price / 100));
       <button
         type="button"
         class="product-list-item__details__button"
-        @click="added ? $emit('removeFromCart') : $emit('addToCart')"
+        :disabled="added"
+        @click="$emit('addToCart')"
       >
-        {{ added ? '-' : '+' }}
+        +
       </button>
     </div>
   </article>
@@ -93,6 +96,11 @@ const formattedPrice = computed(() => formatPrice(props.price / 100));
 
       &:hover {
         background-color: var(--color-black);
+      }
+
+      &:disabled {
+        background-color: var(--color-gray);
+        cursor: default;
       }
     }
   }

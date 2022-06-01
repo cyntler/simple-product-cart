@@ -12,7 +12,6 @@ defineEmits(['addToCart', 'removeFromCart']);
       :key="product.id"
       v-bind="product"
       @add-to-cart="$emit('addToCart', product)"
-      @remove-from-cart="$emit('removeFromCart', product)"
     />
   </section>
 </template>

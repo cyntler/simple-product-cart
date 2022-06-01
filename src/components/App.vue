@@ -10,8 +10,15 @@ import { useCart } from '../hooks/useCart';
 import CartSummaryDrawer from './CartSummaryDrawer.vue';
 
 const { products, isLoading } = useProductsGet();
-const { cartItems, isSummaryOpen, toggleSummary, addItem, removeItem } =
-  useCart();
+const {
+  cartItems,
+  isSummaryOpen,
+  toggleSummary,
+  addItem,
+  removeItem,
+  plusQuantity,
+  minusQuantity,
+} = useCart(products);
 </script>
 
 <template>
@@ -20,10 +27,15 @@ const { cartItems, isSummaryOpen, toggleSummary, addItem, removeItem } =
     v-else-if="products"
     :products="products"
     @add-to-cart="addItem"
-    @remove-from-cart="removeItem"
   />
   <CartIcon :count="cartItems.length" @click="toggleSummary" />
-  <CartSummaryDrawer :open="isSummaryOpen" :items="cartItems" />
+  <CartSummaryDrawer
+    :open="isSummaryOpen"
+    :items="cartItems"
+    @plus-quantity="plusQuantity"
+    @minus-quantity="minusQuantity"
+    @remove-from-cart="removeItem"
+  />
 </template>
 
 <style lang="scss">

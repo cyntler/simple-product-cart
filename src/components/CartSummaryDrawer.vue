@@ -1,20 +1,17 @@
 <script setup>
 import { computed } from 'vue';
 
-import CartSummaryItem from './CartSummaryItem.vue';
+import CartSummaryDrawerItem from './CartSummaryDrawerItem.vue';
 import { formatPrice } from '../utils/formatPrice';
 
 const { items } = defineProps(['open', 'items']);
-const emit = defineEmits(['onClose']);
+defineEmits(['plusQuantity', 'minusQuantity', 'removeFromCart']);
 
-const totalPrice = computed(() => {
-  const sum = [...items].reduce(
-    (acc, item) => (acc += item.price * item.quantity),
-    0
-  );
-
-  return formatPrice(sum > 0 ? sum / 100 : 0);
-});
+const totalPrice = computed(() =>
+  formatPrice(
+    items.reduce((acc, item) => (acc += item.price * item.quantity), 0)
+  )
+);
 </script>
 
 <template>
@@ -23,11 +20,14 @@ const totalPrice = computed(() => {
       <p class="cart-summary-drawer__content__empty" v-if="!items.length">
         No items. Add something! :)
       </p>
-      <CartSummaryItem
+      <CartSummaryDrawerItem
         v-else
         v-for="item in items"
         :key="item.id"
         v-bind="item"
+        @plus-quantity="$emit('plusQuantity', item.id)"
+        @minus-quantity="$emit('minusQuantity', item.id)"
+        @remove-from-cart="$emit('removeFromCart', item)"
       />
     </div>
     <div class="cart-summary-drawer__summary">
@@ -89,18 +89,18 @@ const totalPrice = computed(() => {
       p {
         margin: 0;
         color: var(--color-orange);
-        font-size: 22px;
+        font-size: 18px;
       }
     }
 
     button {
-      width: 150px;
+      width: 120px;
       height: 41px;
       background-color: var(--color-orange);
       border: 0;
       border-radius: 13px;
       color: var(--color-white);
-      font-size: 18px;
+      font-size: 15px;
       transition: background-color 0.25s ease;
 
       &:hover {
