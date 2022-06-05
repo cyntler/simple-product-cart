@@ -43,6 +43,10 @@ export const useCart = (products) => {
     ].quantity -= 1;
   };
 
+  const closeSummary = () => {
+    isSummaryOpen.value = false;
+  };
+
   return {
     cartItems,
     isSummaryOpen,
@@ -51,5 +55,6 @@ export const useCart = (products) => {
     removeItem,
     plusQuantity,
     minusQuantity,
+    closeSummary,
   };
 };
