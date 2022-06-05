@@ -3,6 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "description": "A simple product cart application based on Vue.js and PHP.",
+  "keywords": [
+    "php",
+    "vuejs",
+    "simple-app",
+    "php-oop",
+    "composition-api"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cyntler/simple-product-cart.git"
