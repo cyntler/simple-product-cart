@@ -1,11 +1,32 @@
 <script setup>
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
+import { onClickOutside } from '@vueuse/core';
 
 import CartSummaryDrawerItem from './CartSummaryDrawerItem.vue';
 import { formatPrice } from '../utils/formatPrice';
+import {
+  ADD_PRODUCT_BUTTON_CLASS_NAME,
+  CART_ICON_CLASS_NAME,
+} from '../utils/consts';
 
-const { items } = defineProps(['open', 'items']);
-defineEmits(['plusQuantity', 'minusQuantity', 'removeFromCart']);
+const { items, open } = defineProps(['open', 'items']);
+const emit = defineEmits([
+  'plusQuantity',
+  'minusQuantity',
+  'removeFromCart',
+  'close',
+]);
+
+const containerElRef = ref(null);
+
+onClickOutside(containerElRef, (e) => {
+  if (
+    !e.target?.closest(`.${ADD_PRODUCT_BUTTON_CLASS_NAME}`) &&
+    !e.target.closest(`.${CART_ICON_CLASS_NAME}`)
+  ) {
+    emit('close');
+  }
+});
 
 const totalPrice = computed(() =>
   formatPrice(
@@ -15,7 +36,7 @@ const totalPrice = computed(() =>
 </script>
 
 <template>
-  <aside class="cart-summary-drawer" :class="{ open }">
+  <aside ref="containerElRef" class="cart-summary-drawer" :class="{ open }">
     <div class="cart-summary-drawer__content">
       <p class="cart-summary-drawer__content__empty" v-if="!items.length">
         No items. Add something! :)

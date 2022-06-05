@@ -1,12 +1,13 @@
 <script setup>
 import cartIconSvg from '../assets/cart-icon.svg';
+import { CART_ICON_CLASS_NAME } from '../utils/consts';
 
 defineProps(['count']);
 defineEmits(['click']);
 </script>
 
 <template>
-  <div class="cart-icon" @click="$emit('click')">
+  <div :class="CART_ICON_CLASS_NAME" @click="$emit('click')">
     <span>{{ count }}</span>
     <img :src="cartIconSvg" alt="cart icon" />
   </div>
