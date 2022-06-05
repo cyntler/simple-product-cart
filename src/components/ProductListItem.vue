@@ -2,6 +2,7 @@
 import { computed } from 'vue';
 
 import { formatPrice } from '../utils/formatPrice';
+import { ADD_PRODUCT_BUTTON_CLASS_NAME } from '../utils/consts';
 
 const { price } = defineProps([
   'id',
@@ -32,7 +33,7 @@ const formattedPrice = computed(() => formatPrice(price));
       </div>
       <button
         type="button"
-        class="product-list-item__details__button"
+        :class="ADD_PRODUCT_BUTTON_CLASS_NAME"
         :disabled="added"
         @click="$emit('addToCart')"
       >

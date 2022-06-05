@@ -18,6 +18,7 @@ const {
   removeItem,
   plusQuantity,
   minusQuantity,
+  closeSummary,
 } = useCart(products);
 </script>
 
@@ -32,6 +33,7 @@ const {
   <CartSummaryDrawer
     :open="isSummaryOpen"
     :items="cartItems"
+    @close="closeSummary"
     @plus-quantity="plusQuantity"
     @minus-quantity="minusQuantity"
     @remove-from-cart="removeItem"
