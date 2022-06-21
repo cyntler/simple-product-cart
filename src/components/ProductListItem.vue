@@ -3,6 +3,7 @@ import { computed } from 'vue';
 
 import { formatPrice } from '../utils/formatPrice';
 import { ADD_PRODUCT_BUTTON_CLASS_NAME } from '../utils/consts';
+import { useStore } from '../hooks/useStore';
 
 const { price } = defineProps([
   'id',
@@ -12,8 +13,8 @@ const { price } = defineProps([
   'quantity',
   'added',
 ]);
-defineEmits(['addToCart']);
 
+const { addItemToCart } = useStore();
 const formattedPrice = computed(() => formatPrice(price));
 </script>
 
@@ -35,7 +36,7 @@ const formattedPrice = computed(() => formatPrice(price));
         type="button"
         :class="ADD_PRODUCT_BUTTON_CLASS_NAME"
         :disabled="added"
-        @click="$emit('addToCart')"
+        @click="addItemToCart(id)"
       >
         +
       </button>
