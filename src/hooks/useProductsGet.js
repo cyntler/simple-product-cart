@@ -1,14 +1,23 @@
-import { useFetch } from './useFetch';
+import { watchEffect } from 'vue';
+
+import { useFetch } from '../utils/useFetch';
+import { useStore } from './useStore';
 
 export const useProductsGet = () => {
-  const { data: products, isLoading } = useFetch('/api/v1/products', {
+  const { isProductsLoading, products } = useStore();
+  const { data, isLoading } = useFetch('/api/v1/products', {
     initialData: [],
     isInitialFetching: true,
     delay: 500,
   });
 
+  watchEffect(() => {
+    isProductsLoading.value = isLoading;
+    products.value = data;
+  });
+
   return {
-    products,
+    data,
     isLoading,
   };
 };
