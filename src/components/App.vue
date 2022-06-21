@@ -1,43 +1,24 @@
 <script setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
 
 import ProductList from './ProductList.vue';
 import Loader from './Loader.vue';
 import CartIcon from './CartIcon.vue';
-
-import { useProductsGet } from '../hooks/useProductsGet';
-import { useCart } from '../hooks/useCart';
 import CartSummaryDrawer from './CartSummaryDrawer.vue';
 
-const { products, isLoading } = useProductsGet();
-const {
-  cartItems,
-  isSummaryOpen,
-  toggleSummary,
-  addItem,
-  removeItem,
-  plusQuantity,
-  minusQuantity,
-  closeSummary,
-} = useCart(products);
+import { useProductsGet } from '../hooks/useProductsGet';
+import { useStore } from '../hooks/useStore';
+
+useProductsGet();
+const { isProductsLoading, products, isSummaryOpen, cartItems } = useStore();
+const cartItemsCount = computed(() => cartItems.value.length);
 </script>
 
 <template>
-  <Loader v-if="isLoading" />
-  <ProductList
-    v-else-if="products"
-    :products="products"
-    @add-to-cart="addItem"
-  />
-  <CartIcon :count="cartItems.length" @click="toggleSummary" />
-  <CartSummaryDrawer
-    :open="isSummaryOpen"
-    :items="cartItems"
-    @close="closeSummary"
-    @plus-quantity="plusQuantity"
-    @minus-quantity="minusQuantity"
-    @remove-from-cart="removeItem"
-  />
+  <Loader v-if="isProductsLoading" />
+  <ProductList v-else-if="products" :products="products" />
+  <CartIcon :count="cartItemsCount" />
+  <CartSummaryDrawer :open="isSummaryOpen" :items="cartItems" />
 </template>
 
 <style lang="scss">

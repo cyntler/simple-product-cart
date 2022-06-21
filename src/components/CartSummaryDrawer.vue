@@ -8,15 +8,11 @@ import {
   ADD_PRODUCT_BUTTON_CLASS_NAME,
   CART_ICON_CLASS_NAME,
 } from '../utils/consts';
+import { useStore } from '../hooks/useStore';
 
 const { items, open } = defineProps(['open', 'items']);
-const emit = defineEmits([
-  'plusQuantity',
-  'minusQuantity',
-  'removeFromCart',
-  'close',
-]);
 
+const { closeSummary } = useStore();
 const containerElRef = ref(null);
 
 onClickOutside(containerElRef, (e) => {
@@ -24,7 +20,7 @@ onClickOutside(containerElRef, (e) => {
     !e.target?.closest(`.${ADD_PRODUCT_BUTTON_CLASS_NAME}`) &&
     !e.target.closest(`.${CART_ICON_CLASS_NAME}`)
   ) {
-    emit('close');
+    closeSummary();
   }
 });
 

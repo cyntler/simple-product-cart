@@ -3,6 +3,7 @@ import { computed } from 'vue';
 
 import { formatPrice } from '../utils/formatPrice';
 import removeIconSvg from '../assets/remove-icon.svg';
+import { useStore } from '../hooks/useStore';
 
 const { price } = defineProps([
   'id',
@@ -12,8 +13,8 @@ const { price } = defineProps([
   'quantity',
   'maxQuantity',
 ]);
-defineEmits(['minusQuantity', 'plusQuantity', 'removeFromCart']);
 
+const { removeItemFromCart, plusQuantity, minusQuantity } = useStore();
 const formattedPrice = computed(() => formatPrice(price));
 </script>
 
@@ -23,7 +24,7 @@ const formattedPrice = computed(() => formatPrice(price));
       class="cart-summary-item__remove-icon"
       :src="removeIconSvg"
       alt="Remove"
-      @click="$emit('removeFromCart')"
+      @click="removeItemFromCart(id)"
     />
     <div
       class="cart-summary-item__image"
@@ -34,14 +35,9 @@ const formattedPrice = computed(() => formatPrice(price));
       <p>{{ formattedPrice }}</p>
     </div>
     <div class="cart-summary-item__quantity">
-      <button :disabled="quantity <= 1" @click="$emit('minusQuantity')">
-        -
-      </button>
+      <button :disabled="quantity <= 1" @click="minusQuantity(id)">-</button>
       <span>{{ quantity }}</span>
-      <button
-        :disabled="quantity >= maxQuantity"
-        @click="$emit('plusQuantity')"
-      >
+      <button :disabled="quantity >= maxQuantity" @click="plusQuantity(id)">
         +
       </button>
     </div>

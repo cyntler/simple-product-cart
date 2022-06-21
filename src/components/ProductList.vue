@@ -1,8 +1,8 @@
 <script setup>
+import { useStore } from '../hooks/useStore';
 import ProductListItem from './ProductListItem.vue';
 
 defineProps(['products']);
-defineEmits(['addToCart', 'removeFromCart']);
 </script>
 
 <template>
@@ -11,7 +11,6 @@ defineEmits(['addToCart', 'removeFromCart']);
       v-for="product in products"
       :key="product.id"
       v-bind="product"
-      @add-to-cart="$emit('addToCart', product)"
     />
   </section>
 </template>

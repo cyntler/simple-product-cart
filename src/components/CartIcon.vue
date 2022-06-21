@@ -1,13 +1,15 @@
 <script setup>
 import cartIconSvg from '../assets/cart-icon.svg';
+import { useStore } from '../hooks/useStore';
 import { CART_ICON_CLASS_NAME } from '../utils/consts';
 
 defineProps(['count']);
-defineEmits(['click']);
+
+const { toggleSummary } = useStore();
 </script>
 
 <template>
-  <div :class="CART_ICON_CLASS_NAME" @click="$emit('click')">
+  <div :class="CART_ICON_CLASS_NAME" @click="toggleSummary">
     <span>{{ count }}</span>
     <img :src="cartIconSvg" alt="cart icon" />
   </div>
